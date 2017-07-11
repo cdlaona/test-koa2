@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>模板语法</h1>
+    <a href="https://github.com/aui/art-template/wiki/syntax:native">原生模板语法</a>
+    <a href="https://github.com/aui/art-template/wiki/syntax:simple">精简模板语法</a>
+    <div>动态参数：<%= age %></div>
+
+    <div><%= a.body %></div>
+
+    <div><%= a1.body %></div>
+
+    <div>
+        <% for( i = 0; i < list.length; i++ ){ %>
+        <p><%= list[i].id %></p>
+        <% } %>
+    </div>
+    <form action="/hello" method="post">
+        <input type="text" name="name" />
+        <input type="submit" value="提交" />
+    </form>
+</body>
+</html>
+
+
+
