@@ -2,8 +2,8 @@ module.exports=function(grunt){
     //任务配置
     grunt.initConfig({
         watch : {
-            html : {
-                files: ['.rebooted', 'views/*.html'],
+            server : {
+                files: ['views/*.html'],
                 options: {
                     livereload: true
                 }
@@ -11,13 +11,19 @@ module.exports=function(grunt){
         },
         nodemon : {
             dev : {
-                script : 'bin/www'
+                script : 'bin/www',
+                options : {
+                    ext : 'js, html'
+                }
             }
         },
+
         concurrent:{
-            tasks : ['nodemon', 'watch'],
-            options:{
-                logConcurrentOutput : true
+            dev : {
+                tasks : ['nodemon', 'watch'],
+                options : {
+                    logConcurrentOutput : true
+                }
             }
         }
     });
@@ -28,5 +34,5 @@ module.exports=function(grunt){
     grunt.loadNpmTasks('grunt-concurrent');
 
     //注册任务
-    grunt.registerTask('default',['concurrent']);
+    grunt.registerTask('default',['nodemon:dev']);
 };
