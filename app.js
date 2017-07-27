@@ -42,14 +42,6 @@ app.use(async (ctx, next) => {
 
 
 
-/**
- *  静态服务
- * */
-const Static = require('koa-static');
-app.use(Static(__dirname + '/static'));
-
-
-
 
 
 /**
@@ -68,9 +60,21 @@ app.use(
 /**
  *  路由
  * */
+app.use(async (ctx, next) => {
+    console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
+    await next();
+});
 const Controller = require('./controller/controller');
 app.use(Controller());
 
+
+
+
+/**
+ *  静态服务
+ * */
+const Static = require('koa-static');
+app.use(Static(__dirname + '/static'));
 
 
 

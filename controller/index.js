@@ -1,5 +1,6 @@
 let _request = require('async-request');
 let fn_hello = async(ctx, next) => {
+    console.log(1111111111);
     //ctx.response.body = '123';
     let res = {};
     try{
@@ -37,6 +38,6 @@ let fn_post_hello = async(ctx, next) => {
 };
 
 module.exports = {
-    'GET /hello' : fn_hello,
-    'POST /hello' : fn_post_hello
+    'GET /': fn_hello,
+    'GET /a': fn_post_hello
 };
