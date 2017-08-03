@@ -1,5 +1,6 @@
 const Koa = require('koa');
 let app = new Koa();
+let koaViews = require('koa-views');
 
 
 
@@ -19,9 +20,7 @@ Error(app);
  *  解析formData
  * */
 const Bodyparser = require('koa-bodyparser');
-app.use(Bodyparser({
-    enableTypes : ['json', 'form', 'text']
-}));
+app.use(Bodyparser());
 
 
 
@@ -52,6 +51,9 @@ const ChoFnTemplate = require('./lib/chofnTemplate');
 app.use(
     ChoFnTemplate( path.resolve(__dirname, 'views/') )
 );
+// app.use(koaViews(path.join(__dirname, './views/'), {
+//     extension: 'ejs'
+// }));
 
 
 

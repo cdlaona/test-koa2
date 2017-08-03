@@ -1,23 +1,18 @@
-let _request = require('async-request');
+let request = require('koa2-request');
 let fn_hello = async(ctx, next) => {
-    console.log(1111111111);
     //ctx.response.body = '123';
     let res = {};
     try{
-        res['a'] = await _request('http://localhost/a.php',{
-            method : 'POST',
-            data : {
-                'username' : 123,
-                'password' : 123,
-                'nickname' : 'aa'
-            }
-        });
-        res['a1'] = await _request('http://localhost/aa.php',{
-            method : 'POST',
-            data : {
-                'username' : 123,
-                'password' : 123,
-                'nickname' : 'aa'
+        res['a'] = await request({
+            url: `http://localhost/a.php`,
+            method: 'post',
+            headers: {
+                'content-type': 'application/json',
+                'charset': 'UTF-8'
+            },
+            json: true,
+            body: {
+                username: 123, pwd: 123
             }
         });
     }catch (e){
@@ -26,10 +21,14 @@ let fn_hello = async(ctx, next) => {
 
     res['age'] = '123';
 
+    console.log('===============');
+    console.log(res.a.body.a);
+    console.log('===============');
+
     res['list'] = [];
 
-
-    ctx.body = ctx.render('user', res);
+    let title = 123;
+    ctx.body = ctx.render('show', res);
 };
 
 let fn_post_hello = async(ctx, next) => {
