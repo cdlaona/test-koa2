@@ -2,18 +2,18 @@ let request = require('koa2-request');
 let fn_hello = async(ctx, next) => {
     //ctx.response.body = '123';
     let res = {};
+    var c = "id=哇哈哈";
     try{
         res['a'] = await request({
             url: `http://localhost/a.php`,
             method: 'post',
             headers: {
-                'content-type': 'application/json',
+                // "Content-Type": 'application/json',
+                'content-type': 'application/x-www-form-urlencoded',
                 'charset': 'UTF-8'
             },
-            json: true,
-            body: {
-                username: 123, pwd: 123
-            }
+            json : true,
+            body: "id=哇哈哈"
         });
     }catch (e){
         console.log(e);
@@ -22,7 +22,7 @@ let fn_hello = async(ctx, next) => {
     res['age'] = '123';
 
     console.log('===============');
-    console.log(res.a.body.a);
+    console.log(res.a.body);
     console.log('===============');
 
     res['list'] = [];
